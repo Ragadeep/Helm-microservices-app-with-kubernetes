@@ -12,13 +12,6 @@ jobs:
           name: "Runner Test"
           command: |
             ssh -i ~/.ssh/circleci_rsa raga@13.71.64.229 'echo "Hello, I am on Runners!"'
-
-  deploy-helm:
-    docker:
-      - image: cimg/base:2022.01  # Use an image with Helm installed
-    working_directory: /app
-    steps:
-      - checkout
       - run:
           name: "Run install.sh"
           command: |
