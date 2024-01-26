@@ -10,12 +10,12 @@ jobs:
           fingerprints:
             - "SHA256:wB8CzHbEjCFfcZZRQp173Xk+LMxPkx4mx2R9l4YM0l0"  # Replace with the actual fingerprint
       - run:
+          name: "Debug Output"
+          command: |
+            echo "Debugging..."
+            # Add more debug commands here
+      - run:
           name: "Runner Test"
           command: ssh -i ~/.ssh/circleci_rsa raga@13.71.64.229 'echo "Hi, I am on Runners!"'
 
-workflows:
-  version: 2
-  deploy:
-    jobs:
-      - runner-test
 
