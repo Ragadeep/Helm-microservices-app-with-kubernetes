@@ -37,8 +37,19 @@ jobs:
           command: |
             ./install.sh
 
+  runner-test:
+    machine: true
+    resource_class: smy1gonlie6kbze1enznyj/app
+    steps:
+      - checkout
+      - run:
+          name: "Runner Test"
+          command: echo "Hi, I'm on Runners!"
+
 workflows:
   version: 2
   deploy:
     jobs:
       - deploy
+      - runner-test
+
