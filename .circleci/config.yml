@@ -13,26 +13,10 @@ jobs:
           command: |
             ssh -i ~/.ssh/circleci_rsa raga@13.71.64.229 'echo "Hello, I am on Runners!"'
       - run:
-          name: "Install Helm"
+          name: "Copy files to home folder and run install.sh"
           command: |
-            curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3
-            chmod 700 get_helm.sh
-            ./get_helm.sh
-      - run:
-          name: "Run install.sh"
-          command: |
-            ./install.sh
-
-  deploy-helm:
-    docker:
-      - image: cimg/base:2022.01  # Replace with a suitable Docker image for Helm
-    working_directory: /app
-    steps:
-      - checkout
-      - run:
-          name: "Deploy Helm Charts"
-          command: |
-            ./install.sh
+            scp -i ~/.ssh/circleci_rsa -r ./* raga@13.71.64.229:/home/raga
+            ssh -i ~/.ssh/circleci_rsa raga@13.71.64.229 'cd /home/raga && ./install.sh'
 
 workflows:
   version: 2
