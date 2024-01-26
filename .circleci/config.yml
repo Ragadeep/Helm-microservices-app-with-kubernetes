@@ -4,7 +4,7 @@ jobs:
   build:
     docker:
       - image: cimg/base:current
-    resource_class: smy1gonlie6kbze1enznyj/app
+    resource_class: cci-ahjcw/smy1gonlie6kbze1enznyj/app
     steps:
       - run:
           name: Run a Step
