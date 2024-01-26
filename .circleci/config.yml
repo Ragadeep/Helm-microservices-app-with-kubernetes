@@ -1,0 +1,44 @@
+version: 2.1
+
+orbs:
+  kubernetes: circleci/kubernetes@1.1.0
+
+jobs:
+  deploy:
+    docker:
+      - image: cimg/base:2022.01
+    working_directory: /app
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run:
+          name: Check if Minikube is installed
+          command: |
+            if ! command -v minikube &> /dev/null; then
+              echo "Minikube is not installed. Installing now..."
+              # Install Minikube based on your OS
+            else
+              echo "Minikube is already installed."
+            fi
+      - run:
+          name: Start Minikube
+          command: |
+            if ! minikube status &> /dev/null; then
+              minikube start
+            else
+              echo "Minikube is already running."
+            fi
+      - run:
+          name: Install Helm
+          command: |
+            # Install Helm based on your OS
+      - run:
+          name: Deploy Helm Charts
+          command: |
+            ./install.sh
+
+workflows:
+  version: 2
+  deploy:
+    jobs:
+      - deploy
