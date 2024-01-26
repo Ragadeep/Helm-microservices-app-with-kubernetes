@@ -3,7 +3,6 @@ version: 2.1
 jobs:
   runner-test:
     machine: true
-    resource_class: smy1gonlie6kbze1enznyj/app
     steps:
       - checkout
       - add_ssh_keys:
@@ -19,5 +18,6 @@ workflows:
   build:
     jobs:
       - runner-test
+
 
 
