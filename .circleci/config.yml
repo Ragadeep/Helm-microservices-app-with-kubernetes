@@ -7,16 +7,16 @@ jobs:
       - checkout
       - add_ssh_keys:
           fingerprints:
-            - "SHA256:wB8CzHbEjCFfcZZRQp173Xk+LMxPkx4mx2R9l4YM0l0"  # Replace with the actual fingerprint
+            - "SHA256:wB8CzHbEjCFfcZZRQ173Xk+LMxPkx4mx2R9l4YM"  # Replace with the actual fingerprint
       - run:
           name: "Runner Test"
           command: |
-            ssh -i ~/.ssh/circleci_rsa raga@13.71.64.229 'echo "Hello, I am on Runners!"'
+            ssh -i ~/.ssh/circleci_rsa ragad@13.71.64.2 'echo "Hello, I am on Runners!"'
       - run:
           name: "Copy files to home folder and run install.sh"
           command: |
-            scp -i ~/.ssh/circleci_rsa -r ./* raga@13.71.64.229:/home/raga
-            ssh -i ~/.ssh/circleci_rsa raga@13.71.64.229 'cd /home/raga && ./install.sh'
+            scp -i ~/.ssh/circleci_rsa -r ./* ragad@13.71.64.2:/home/raga
+            ssh -i ~/.ssh/circleci_rsa ragad@13.71.64.2 'cd /home/raga && ./install.sh'
 
   deploy-helm:
     docker:
