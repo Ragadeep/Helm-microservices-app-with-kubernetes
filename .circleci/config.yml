@@ -1,16 +1,12 @@
 version: 2.1
 
-jobs:
-  hello_world:
-    docker:
-      - image: cimg/base:stable
-
-    steps:
-      - run: echo "Hello, World!"
-
 workflows:
-  version: 2
-  build-and-test:
+  build-workflow:
     jobs:
-      - hello_world
-
+      - runner
+jobs:
+  runner:
+    machine: true
+    resource_class: smy1gonlie6kbze1enznyj/app
+    steps:
+      - run: echo "Hi I'm on Runners!"
