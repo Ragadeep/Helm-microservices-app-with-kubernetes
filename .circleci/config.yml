@@ -1,11 +1,12 @@
 version: 2.1
+
 workflows:
-  testing:
+  build-workflow:
     jobs:
-      - runner-test
+      - runner
 jobs:
-  runner-test:
+  runner:
     machine: true
-    resource_class: smy1gonlie6kbze1enznyj/app
+    resource_class: raga/smy1gonlie6kbze1enznyj/app
     steps:
       - run: echo "Hi I'm on Runners!"
