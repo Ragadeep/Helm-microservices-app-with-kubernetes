@@ -1,55 +1,11 @@
 version: 2.1
-
-orbs:
-  kubernetes: circleci/kubernetes@1.1.0
-
+workflows:
+  testing:
+    jobs:
+      - runner-test
 jobs:
-  deploy:
-    docker:
-      - image: cimg/base:2022.01
-    working_directory: /app
-    steps:
-      - checkout
-      - setup_remote_docker
-      - run:
-          name: Check if Minikube is installed
-          command: |
-            if ! command -v minikube &> /dev/null; then
-              echo "Minikube is not installed. Installing now..."
-              # Install Minikube based on your OS
-            else
-              echo "Minikube is already installed."
-            fi
-      - run:
-          name: Start Minikube
-          command: |
-            if ! minikube status &> /dev/null; then
-              minikube start
-            else
-              echo "Minikube is already running."
-            fi
-      - run:
-          name: Install Helm
-          command: |
-            # Install Helm based on your OS
-      - run:
-          name: Deploy Helm Charts
-          command: |
-            ./install.sh
-
   runner-test:
     machine: true
     resource_class: smy1gonlie6kbze1enznyj/app
     steps:
-      - checkout
-      - run:
-          name: "Runner Test"
-          command: echo "Hi, I'm on Runners!"
-
-workflows:
-  version: 2
-  deploy:
-    jobs:
-      - deploy
-      - runner-test
-
+      - run: echo "Hi I'm on Runners!"
