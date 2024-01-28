@@ -7,4 +7,4 @@ variables:
 build_job:
   stage: build
   script:
-    - echo $HELLO_MESSAGE  #testing
+    - echo $HELLO_MESSAGE  #testing...
