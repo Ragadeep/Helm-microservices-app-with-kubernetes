@@ -1,0 +1,10 @@
+stages:
+  - build
+
+variables:
+  HELLO_MESSAGE: "Hello, World!"
+
+build_job:
+  stage: build
+  script:
+    - echo $HELLO_MESSAGE
